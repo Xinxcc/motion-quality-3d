@@ -1,0 +1,47 @@
+# ── Privacy & data: NEVER commit recordings, sensor data, or frames ──────────
+# Videos
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.wmv
+# Tabular / sensor / mocap data
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.mat
+*.bvh
+*.c3d
+# Images / extracted frames
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.tif
+*.tiff
+# Arrays / models / archives
+*.npy
+*.npz
+*.pkl
+*.pickle
+*.h5
+*.zip
+*.7z
+*.rar
+
+# Editor local history & IDE config (noise)
+.history/
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db

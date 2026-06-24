@@ -1,0 +1,10 @@
+numpy
+opencv-python
+mediapipe
+pandas
+scipy
+matplotlib
+scikit-learn
+# If your DTW code imports a library, add it here, e.g.:
+# dtaidistance
+# fastdtw
