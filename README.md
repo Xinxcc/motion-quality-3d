@@ -4,8 +4,16 @@ A computer-vision pipeline that **quantifies the quality of human 3D motion from
 cameras** and compares it against a reference, using pose estimation, multi-view
 geometry, sensor fusion and dynamic time warping.
 
-> Independent M.Sc. project. **No data, videos or subject information are included
-> in this repository** — only the source code.
+> Independent M.Sc. project. The repository contains the source code and a short
+> demo clip of a test subject with the face blurred; no raw recordings or sensor
+> data are included.
+
+## Demo
+
+![Pose estimation demo](docs/demo.gif)
+
+Live MediaPipe pose estimation (skeleton overlay) on a recorded movement, the
+first stage of the pipeline. The test subject's face is lightly blurred.
 
 ## Pipeline
 
