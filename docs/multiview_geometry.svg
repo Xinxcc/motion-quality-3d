@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 420" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="amg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2c6e9b"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="920" height="420" rx="14" fill="#f7f9fb" stroke="#e2e8f0"/>
+  <text x="30" y="38" font-size="20" font-weight="700" fill="#16324f">Multi-view geometry — triangulating a 3D point from two views</text>
+  <text x="30" y="58" font-size="12" fill="#8a97a4">Schematic illustration (not captured data).</text>
+
+  <!-- baseline -->
+  <line x1="120" y1="330" x2="800" y2="330" stroke="#b6c2cd" stroke-width="1.6"/>
+  <text x="460" y="348" font-size="11.5" fill="#8a97a4" text-anchor="middle">baseline (relative pose R, t)</text>
+
+  <!-- rays to X -->
+  <line x1="120" y1="330" x2="460" y2="80" stroke="#2c6e9b" stroke-width="1.8" marker-end="url(#amg)"/>
+  <line x1="800" y1="330" x2="460" y2="80" stroke="#2c6e9b" stroke-width="1.8" marker-end="url(#amg)"/>
+
+  <!-- camera 1 (left): center, frustum, image plane, x1 -->
+  <line x1="120" y1="330" x2="290" y2="261" stroke="#16324f" stroke-width="1.2"/>
+  <line x1="120" y1="330" x2="236" y2="189" stroke="#16324f" stroke-width="1.2"/>
+  <line x1="290" y1="261" x2="236" y2="189" stroke="#16324f" stroke-width="2.6"/>
+  <circle cx="120" cy="330" r="6" fill="#16324f"/>
+  <text x="100" y="352" font-size="13" font-weight="700" fill="#16324f">C₁</text>
+  <circle cx="263" cy="225" r="4.5" fill="#d1495b"/>
+  <text x="243" y="224" font-size="12.5" font-weight="700" fill="#d1495b">x₁</text>
+  <text x="196" y="300" font-size="11" fill="#8a97a4">image plane 1</text>
+
+  <!-- camera 2 (right): mirror of camera 1 -->
+  <line x1="800" y1="330" x2="630" y2="261" stroke="#16324f" stroke-width="1.2"/>
+  <line x1="800" y1="330" x2="684" y2="189" stroke="#16324f" stroke-width="1.2"/>
+  <line x1="630" y1="261" x2="684" y2="189" stroke="#16324f" stroke-width="2.6"/>
+  <circle cx="800" cy="330" r="6" fill="#16324f"/>
+  <text x="808" y="352" font-size="13" font-weight="700" fill="#16324f">C₂</text>
+  <circle cx="657" cy="225" r="4.5" fill="#d1495b"/>
+  <text x="664" y="224" font-size="12.5" font-weight="700" fill="#d1495b">x₂</text>
+  <text x="640" y="300" font-size="11" fill="#8a97a4" text-anchor="end">image plane 2</text>
+
+  <!-- 3D point X -->
+  <circle cx="460" cy="80" r="7" fill="#58a66b" stroke="#2f6b40" stroke-width="1.5"/>
+  <text x="460" y="68" font-size="14" font-weight="700" fill="#2f6b40" text-anchor="middle">X — reconstructed 3D point</text>
+
+  <!-- method panel -->
+  <rect x="30" y="366" width="860" height="42" rx="9" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="48" y="392" font-size="11.5" fill="#44525f"><tspan font-weight="700" fill="#16324f">F</tspan> (8-point + RANSAC) &#160;→&#160; <tspan font-weight="700" fill="#16324f">E = K₂ᵀ F K₁</tspan> &#160;→&#160; <tspan font-weight="700" fill="#16324f">recoverPose</tspan> → (R, t) &#160;→&#160; <tspan font-weight="700" fill="#16324f">triangulate</tspan> → X &#160;→&#160; <tspan font-weight="700" fill="#16324f">solvePnP</tspan> pose refinement</text>
+</svg>

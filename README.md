@@ -9,24 +9,11 @@ geometry, sensor fusion and dynamic time warping.
 
 ## Pipeline
 
-```
- video(s) ──► MediaPipe pose ──► camera calibration / undistortion
-                                          │
-                                          ▼
-                         multi-view 3D reconstruction
-                    (epipolar geometry · triangulation · solvePnP)
-                                          │
-                                          ▼
-          fuse with a wearable motion sensor  ── cross-correlation
-          (time-synchronization + resampling)      alignment
-                                          │
-                                          ▼
-                 multi-dimensional Dynamic Time Warping (mDTW)
-                                          │
-                                          ▼
-        Random Forest / Decision Tree / Logistic Regression
-              (motion-quality classification, cross-validated)
-```
+![3D Motion-Quality Analysis — vision pipeline](docs/pipeline.svg)
+
+MediaPipe lifts 2D body landmarks, multi-view geometry reconstructs them in 3D,
+the camera-derived motion is time-aligned to a wearable sensor, and
+multi-dimensional DTW distances feed a cross-validated motion-quality classifier.
 
 ## What it does
 
@@ -41,6 +28,26 @@ geometry, sensor fusion and dynamic time warping.
    **multi-dimensional DTW** distances between sequences.
 6. **Classification** — Random Forest / Decision Tree / Logistic Regression with
    grid-search cross-validation and confusion-matrix evaluation.
+
+## Multi-view geometry
+
+![Multi-view geometry — triangulating a 3D point from two views](docs/multiview_geometry.svg)
+
+*Schematic.* A 3D point is recovered from two calibrated views: estimate the
+fundamental matrix **F** (8-point + RANSAC), form the essential matrix
+**E = K₂ᵀ F K₁**, `recoverPose` to get the relative rotation/translation **(R, t)**,
+then triangulate the back-projected rays to **X**; `solvePnP` refines camera pose
+from 2D–3D correspondences.
+
+## Motion comparison (mDTW)
+
+![Multi-dimensional DTW motion alignment](docs/mdtw_alignment.png)
+
+*Illustrative only — synthetic multi-channel motion signals, not participant data.*
+A reference motion and a time-warped test motion are aligned with
+multi-dimensional Dynamic Time Warping; the right panel shows the accumulated-cost
+matrix and the optimal warping path. The DTW distance is one of the features used
+to score motion quality.
 
 ## Modules (overview)
 
